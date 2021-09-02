@@ -8,15 +8,15 @@ export default function useJsonFetch(url) {
 
   useEffect(() => {
     axios(url)
-      .then(res => {
+      .then((res) => {
         setData(res.data);
+      })
+      .catch((e) => {
+        setError(e);
+      })
+      .finally(() => {
         setIsLoading(false);
         setError(false);
-      })
-      .catch(e => {
-        setData(false);
-        setIsLoading(false);
-        setError(e);
       })
   }, [url]);
   return [data, isLoading, error];
